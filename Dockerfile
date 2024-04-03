@@ -44,6 +44,8 @@ RUN chmod +x ~/start-hadoop.sh && \
     chmod +x $HADOOP_HOME/sbin/start-yarn.sh 
 
 # format namenode
+RUN sed -i 's/\r$//' /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+
 RUN /usr/local/hadoop/bin/hdfs namenode -format
 
 CMD [ "sh", "-c", "service ssh start; bash"]
